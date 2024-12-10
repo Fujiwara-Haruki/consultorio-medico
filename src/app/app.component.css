@@ -1,0 +1,31 @@
+nav{
+    padding: 40px;
+    background-color: var(--color-1);
+}
+
+ul{
+    display: flex;
+    justify-content: center;
+    list-style: none ;
+
+}
+
+li{
+
+
+}
+
+a{
+    border-radius: 5px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--color-2);
+    font-size: 20px;
+}
+
+a:hover{
+    border-radius: 5px;
+    padding: 20px;
+    color: var(--color-3);
+    background-color: var(--color-2);
+}
