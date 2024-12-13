@@ -1,16 +1,25 @@
 nav{
-    padding: 35px;
+    min-height: 100px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     background-color: var(--color-1);
 }
 
 ul{
     display: flex;
-    justify-content: center;
     list-style: none ;
+    position: relative;
+    flex-wrap: wrap;
+    height: 100%;
+    align-items: center;
 
 }
 
 a{
+    display: block;
     border-radius: 5px;
     padding: 20px;
     text-decoration: none;
@@ -20,7 +29,6 @@ a{
 
 a:hover{
     border-radius: 5px;
-    padding: 20px;
     color: var(--color-3);
     background-color: var(--color-2);
 }
