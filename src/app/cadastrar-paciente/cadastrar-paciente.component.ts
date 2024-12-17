@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-cadastrar-paciente',
-  standalone: false,
-  
   templateUrl: './cadastrar-paciente.component.html',
-  styleUrls: ['./cadastrar-paciente.component.css']
+  styleUrls: ['./cadastrar-paciente.component.css'], // Verifique o nome e caminho corretos
 })
-
 export class CadastrarPacienteComponent {
   paciente = {
     nome: '',
