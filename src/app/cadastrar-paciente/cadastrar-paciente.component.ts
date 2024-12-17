@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';  // Aqui deve ser o HttpClient, não o HttpClientModule
 
 @Component({
   selector: 'app-cadastrar-paciente',
+  standalone: false,
   templateUrl: './cadastrar-paciente.component.html',
-  styleUrls: ['./cadastrar-paciente.component.css'], // Verifique o nome e caminho corretos
+  styleUrls: ['cadastrar-paciente.component.css'],
 })
+
 export class CadastrarPacienteComponent {
   paciente = {
     nome: '',
@@ -17,7 +19,7 @@ export class CadastrarPacienteComponent {
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    const url = 'http://localhost/cadastrar-paciente.php'; 
+    const url = 'http://localhost/cadastrar-paciente.php';  // URL da sua API
 
     this.http.post(url, this.paciente).subscribe({
       next: (response) => {

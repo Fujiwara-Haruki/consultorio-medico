@@ -1,33 +1,25 @@
-import { Component } from '@angular/core';  
-import { HttpClientModule } from '@angular/common/http';  
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-@Component({
-  selector: 'app-cadastrar-paciente',
-  templateUrl: './cadastrar-paciente.component.html',
-  styleUrls: ['cadastrar-paciente.component.css'],
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';  // Certifique-se de importar o HttpClientModule aqui
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CadastrarPacienteComponent } from './cadastrar-paciente/cadastrar-paciente.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CadastrarPacienteComponent,  // Declaração do componente
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,  // Adicione o HttpClientModule aqui
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class CadastrarPacienteComponent {
-  paciente = {
-    nome: '',
-    cpf: '',
-    email: '',
-    nasc: ''
-  };
-
-  constructor(private http: HttpClient) {}
-
-  onSubmit() {
-    const url = 'http://localhost/cadastrar-paciente.php'; 
-
-    this.http.post(url, this.paciente).subscribe({
-      next: (response) => {
-        console.log('Paciente cadastrado com sucesso:', response);
-        alert('Paciente cadastrado com sucesso!');
-      },
-      error: (err) => {
-        console.error('Erro ao cadastrar paciente:', err);
-        alert('Erro ao cadastrar paciente!');
-      }
-    });
-  }
-}
+export class AppModule {}
