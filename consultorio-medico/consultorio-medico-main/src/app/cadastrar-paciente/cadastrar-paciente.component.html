@@ -1,0 +1,19 @@
+<section>
+    <form (ngSubmit)="onSubmit()">
+        <h1>Cadastrar paciente</h1>
+
+        <label class="form-label" for="nome">Nome</label>
+        <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="paciente.nome" required>
+
+        <label class="form-label" for="cpf">CPF</label>
+        <input class="form-control" type="text" name="cpf" id="cpf" [(ngModel)]="paciente.cpf" required>
+
+        <label class="form-label" for="email">E-mail</label>
+        <input class="form-control" type="email" name="email" id="email" [(ngModel)]="paciente.email" required>
+
+        <label class="form-label" for="data">Data de Nascimento</label>
+        <input class="form-control" type="date" name="data" id="data" [(ngModel)]="paciente.nasc" required>
+
+        <input class="btn btn-primary mt-3" type="submit" value="Cadastrar">
+    </form>
+</section>
