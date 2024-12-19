@@ -63,6 +63,29 @@ app.get('/api/pacientes/:cpf/consultas', (req, res) => {
   });
 });
 
+// Rota para cancelar uma consulta
+app.delete('/api/consultas/:id', (req, res) => {
+  const consultaId = req.params.id;
+
+  // Primeiro, vamos remover a consulta
+  const deleteQuery = 'DELETE FROM consultas WHERE id = ?';
+
+  db.query(deleteQuery, [consultaId], (err, results) => {
+    if (err) {
+      console.error('Erro ao cancelar consulta:', err);
+      return res.status(500).json({ error: 'Erro ao cancelar consulta' });
+    }
+
+    // Se não houver consulta com esse ID
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Consulta não encontrada' });
+    }
+
+    res.status(200).json({ message: 'Consulta cancelada com sucesso' });
+  });
+});
+
+
 // Iniciar o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);

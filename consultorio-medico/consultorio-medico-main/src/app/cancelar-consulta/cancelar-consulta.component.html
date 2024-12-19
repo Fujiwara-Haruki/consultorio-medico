@@ -1,17 +1,40 @@
 <section>
-    <form action="">
-
-        <h1>Cancelar Consulta</h1>
-
-        <label class="form-label" for="cpf">CPF</label>
-        <input class="form-control" type="text" name="cpf" id="cpf">
-
-        <input type="submit" class="btn btn-primary mt-3" value="Procurar">
-
-        <div>
-            <!--Consultas encontradas naquele CPF-->
-            <!--Botão de cancelar-->
-        </div>
-
+    <form (submit)="buscarConsultas()">
+      <h1>Visualizar Consulta</h1>
+      
+      <label class="form-label" for="cpf">CPF</label>
+      <input [(ngModel)]="cpf" class="form-control" type="text" name="cpf" id="cpf" required>
+  
+      <input type="submit" class="btn btn-primary mt-3" value="Procurar">
+      <br>
+      <div *ngIf="mensagem" class="alert alert-info mt-3">{{ mensagem }}</div>
+      <div *ngIf="consultas.length > 0" class="mt-3">
+        <h3>Consultas Marcadas</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Medico</th>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let consulta of consultas">
+              <td>{{ consulta.medico_nome }}</td>
+              <td>{{ consulta.data | date }}</td>
+              <td>{{ consulta.horario }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="cancelarConsulta(consulta.id)">
+                  Cancelar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </form>
-</section>
+  
+   
+  </section>
+  
