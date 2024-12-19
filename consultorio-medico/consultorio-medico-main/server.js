@@ -55,6 +55,14 @@ app.post('/api/pacientes', (req, res) => {
   });
 });
 
+app.get('/api/pacientes/:cpf/consultas', (req, res) => {
+  const { cpf } = req.params;
+
+  db.query('SELECT * FROM consultas WHERE paciente_cpf = ?', [cpf], (error, results) => {
+    res.json(results); // Retorna as consultas encontradas  
+  });
+});
+
 // Iniciar o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
