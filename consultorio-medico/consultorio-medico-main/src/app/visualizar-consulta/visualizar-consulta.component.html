@@ -32,7 +32,7 @@
         <ul>
           <li *ngFor="let consulta of consultas">
             <p><strong>Médico:</strong> {{ consulta.medico_nome }}</p>
-            <p><strong>Data:</strong> {{ consulta.data }}</p>
+            <p><strong>Data:</strong> {{ consulta.data| date: 'dd/MM/yyyy' }}</p>
             <p><strong>Horário:</strong> {{ consulta.horario }}</p>
           </li>
         </ul>

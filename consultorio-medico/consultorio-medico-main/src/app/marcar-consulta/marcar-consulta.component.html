@@ -1,37 +1,42 @@
 <section>
-    <form>
+  <form (ngSubmit)="marcarConsulta()">
+    <h1>Marcar Consulta</h1>
 
-        <h1>Marcar Consulta</h1>
+    <label class="form-label" for="cpf">CPF</label>
+    <input [(ngModel)]="cpf" class="form-control" type="text" name="cpf" id="cpf" required>
 
-        <label class="form-label" for="cpf">CPF</label>
-        <input class="form-control" type="text" name="cpf" id="cpf">
+    <!-- Especialidade -->
+    <label for="especialidade">Especialidade</label>
+    <select class="form-control" id="especialidade" [(ngModel)]="especialidadeSelecionada" name="especialidade" (change)="filtrarMedicos()">
+      <option *ngFor="let especialidade of especialidades" [value]="especialidade">{{ especialidade }}</option>
+    </select>
 
-        <label class="form-label" for="especialidade">Especialidade</label>
-        <select class="form-control" name="especialidade" id="especialidade">
-            <option selected>Selecione especialidade</option>
-            <option value="1"></option>
-            <option value="2"></option>
-        </select>
-        
+    <!-- Médico -->
+    <label for="medico">Médico</label>
+    <select class="form-control" id="medico" name="medico" [(ngModel)]="medicoSelecionado" (change)="filtrarDatasDisponiveis()">
+      <option *ngFor="let medico of medicos" [value]="medico.nome">{{ medico.nome }}</option>
+    </select>
 
-        <label class="form-label" for="medico">Médico</label>
-        <select class="form-control" name="medico" id="medico">
-            <option selected>Selecione Médico</option>
-            <option value="1"></option>
-            <option value="2"></option>
-        </select>
-        
-        <label class="form-label" for="data">Data</label>
-        <input class="form-control"  type="date" name="data" id="data">
+    <!-- Data -->
+    <label for="data">Data</label>
+    <select [(ngModel)]="dataSelecionada" (change)="filtrarHorariosDisponiveis()" name="data" class="form-control">
+      <option *ngFor="let data of datasDisponiveis" [value]="data">
+        {{ data | date: 'dd/MM/yyyy' }}
+      </option>
+    </select>
 
-        <label class="form-label" for="horario">Horário</label>
-        <select class="form-control"  name="horario" id="horario">
-            <option selected>Selecione Horário</option>
-            <option value="1"></option>
-            <option value="2"></option>
-        </select>
+      <!-- Horário -->
+    <label for="horario">Horário</label>
+    <select [(ngModel)]="horarioSelecionado" name="horario" class="form-control">
+      <option *ngFor="let horario of horariosDisponiveis" [value]="horario">
+        {{ horario }}
+      </option>
+    </select>
 
-        <input type="submit" class="btn btn-primary mt-3" value="Finalizar">
-        
-    </form>
+    <button type="submit" class="btn btn-primary mt-5" [disabled]="!horarioSelecionado">Marcar Consulta</button>
+
+    <div *ngIf="erroData" class="alert alert-danger mt-3">
+      {{ erroData }}
+    </div>
+  </form>
 </section>
